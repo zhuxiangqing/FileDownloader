@@ -27,8 +27,10 @@ public class SingleTaskTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single);
 
+        //文件下载路径的生成：
         llsApkFilePath = FileDownloadUtils.getDefaultSaveRootPath() + File.separator + "tmpdir1" + File.separator +
                 Constant.LIULISHUO_CONTENT_DISPOSITION_FILENAME;
+
         llsApkDir = FileDownloadUtils.getDefaultSaveRootPath() + File.separator + "tmpdir1";
         normalTaskFilePath = FileDownloadUtils.getDefaultSaveRootPath() + File.separator + "tmp2";
         chunkedFilePath = FileDownloadUtils.getDefaultSaveRootPath() + File.separator + "chunked_data_tmp1";
@@ -153,7 +155,7 @@ public class SingleTaskTestActivity extends AppCompatActivity {
     private BaseDownloadTask createDownloadTask(final int position) {
         final ViewHolder tag;
         final String url;
-        boolean isDir = false;
+        boolean isDir = false;//false
         String path;
 
         switch (position) {

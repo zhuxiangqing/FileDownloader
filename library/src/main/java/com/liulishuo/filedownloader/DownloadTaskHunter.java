@@ -352,9 +352,10 @@ public class DownloadTaskHunter implements ITaskHunter, ITaskHunter.IStarter, IT
             mStatus = FileDownloadStatus.toLaunchPool;
         }
 
-        final BaseDownloadTask.IRunningTask runningTask = mTask.getRunningTask();
-        final BaseDownloadTask origin = runningTask.getOrigin();
+        final BaseDownloadTask.IRunningTask runningTask = mTask.getRunningTask();//由DownLoadTask实现的
+        final BaseDownloadTask origin = runningTask.getOrigin();//由DownLoadTask实现的
 
+        //如果FileDownLoadMonitor有效的话
         if (FileDownloadMonitor.isValid()) {
             FileDownloadMonitor.getMonitor().onRequestStart(origin);
         }
@@ -516,6 +517,11 @@ public class DownloadTaskHunter implements ITaskHunter, ITaskHunter.IStarter, IT
         mStatus = FileDownloadStatus.INVALID_STATUS;
     }
 
+    /**
+     * prepare方法主要用于准备文件下载的路径
+     *
+     * @throws IOException
+     */
     private void prepare() throws IOException {
         final BaseDownloadTask.IRunningTask runningTask = mTask.getRunningTask();
         final BaseDownloadTask origin = runningTask.getOrigin();
@@ -569,7 +575,6 @@ public class DownloadTaskHunter implements ITaskHunter, ITaskHunter.IStarter, IT
         final ILostServiceConnectedHandler lostConnectedHandler = FileDownloader.getImpl().
                 getLostConnectedHandler();
         try {
-
             if (lostConnectedHandler.dispatchTaskStart(runningTask)) {
                 return;
             }

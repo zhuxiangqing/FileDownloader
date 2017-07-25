@@ -42,6 +42,7 @@ import java.util.List;
  *
  * @see com.liulishuo.filedownloader.services.FileDownloadService The service for FileDownloader.
  * @see FileDownloadProperties
+ * 单例模式的FileDownloader类
  */
 @SuppressWarnings("WeakerAccess")
 public class FileDownloader {

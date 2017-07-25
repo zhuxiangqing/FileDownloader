@@ -152,6 +152,7 @@ class FileDownloadTaskLauncher {
                 return;
             }
 
+            //最后start
             mTaskStarter.start();
         }
 

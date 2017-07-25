@@ -138,8 +138,10 @@ public class FileDownloadUtils {
         }
 
         if (FileDownloadHelper.getAppContext().getExternalCacheDir() == null) {
+            //data/cache路径：
             return Environment.getDownloadCacheDirectory().getAbsolutePath();
         } else {
+            //外部存储的应用缓存路径
             //noinspection ConstantConditions
             return FileDownloadHelper.getAppContext().getExternalCacheDir().getAbsolutePath();
         }

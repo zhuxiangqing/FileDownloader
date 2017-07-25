@@ -28,6 +28,7 @@ import java.lang.ref.WeakReference;
 
 /**
  * For handling the case of the FileDownloadService runs in shared the main process.
+ * 管理生命周期
  */
 public class FDServiceSharedHandler extends IFileDownloadIPCService.Stub
         implements IFileDownloadServiceHandler {

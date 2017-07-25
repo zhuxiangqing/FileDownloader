@@ -43,16 +43,16 @@ public class FileDownloadServiceProxy implements IFileDownloadServiceProxy {
     }
 
     public static FDServiceSharedHandler.FileDownloadServiceSharedConnection getConnectionListener() {
-        if (getImpl().handler instanceof FileDownloadServiceSharedTransmit) {
-            return (FDServiceSharedHandler.FileDownloadServiceSharedConnection) getImpl().handler;
+        if (getImpl().proxy instanceof FileDownloadServiceSharedTransmit) {
+            return (FDServiceSharedHandler.FileDownloadServiceSharedConnection) getImpl().proxy;
         }
         return null;
     }
 
-    private final IFileDownloadServiceProxy handler;
+    private final IFileDownloadServiceProxy proxy;
 
     private FileDownloadServiceProxy() {
-        handler = FileDownloadProperties.getImpl().PROCESS_NON_SEPARATE ?
+        proxy = FileDownloadProperties.getImpl().PROCESS_NON_SEPARATE ?
                 new FileDownloadServiceSharedTransmit() :
                 new FileDownloadServiceUIGuard();
     }
@@ -62,88 +62,88 @@ public class FileDownloadServiceProxy implements IFileDownloadServiceProxy {
                          int callbackProgressMinIntervalMillis,
                          int autoRetryTimes, boolean forceReDownload, FileDownloadHeader header,
                          boolean isWifiRequired) {
-        return handler.start(url, path, pathAsDirectory, callbackProgressTimes,
+        return proxy.start(url, path, pathAsDirectory, callbackProgressTimes,
                 callbackProgressMinIntervalMillis, autoRetryTimes, forceReDownload, header,
                 isWifiRequired);
     }
 
     @Override
     public boolean pause(int id) {
-        return handler.pause(id);
+        return proxy.pause(id);
     }
 
     @Override
     public boolean isDownloading(String url, String path) {
-        return handler.isDownloading(url, path);
+        return proxy.isDownloading(url, path);
     }
 
     @Override
     public long getSofar(int id) {
-        return handler.getSofar(id);
+        return proxy.getSofar(id);
     }
 
     @Override
     public long getTotal(int id) {
-        return handler.getTotal(id);
+        return proxy.getTotal(id);
     }
 
     @Override
     public byte getStatus(int id) {
-        return handler.getStatus(id);
+        return proxy.getStatus(id);
     }
 
     @Override
     public void pauseAllTasks() {
-        handler.pauseAllTasks();
+        proxy.pauseAllTasks();
     }
 
     @Override
     public boolean isIdle() {
-        return handler.isIdle();
+        return proxy.isIdle();
     }
 
     @Override
     public boolean isConnected() {
-        return handler.isConnected();
+        return proxy.isConnected();
     }
 
     @Override
     public void bindStartByContext(Context context) {
-        handler.bindStartByContext(context);
+        proxy.bindStartByContext(context);
     }
 
     @Override
     public void bindStartByContext(Context context, Runnable connectedRunnable) {
-        handler.bindStartByContext(context, connectedRunnable);
+        proxy.bindStartByContext(context, connectedRunnable);
     }
 
     @Override
     public void unbindByContext(Context context) {
-        handler.unbindByContext(context);
+        proxy.unbindByContext(context);
     }
 
     @Override
     public void startForeground(int notificationId, Notification notification) {
-        handler.startForeground(notificationId, notification);
+        proxy.startForeground(notificationId, notification);
     }
 
     @Override
     public void stopForeground(boolean removeNotification) {
-        handler.stopForeground(removeNotification);
+        proxy.stopForeground(removeNotification);
     }
 
     @Override
     public boolean setMaxNetworkThreadCount(int count) {
-        return handler.setMaxNetworkThreadCount(count);
+        return proxy.setMaxNetworkThreadCount(count);
     }
 
     @Override
     public boolean clearTaskData(int id) {
-        return handler.clearTaskData(id);
+        return proxy.clearTaskData(id);
     }
 
     @Override
     public void clearAllTaskData() {
-        handler.clearAllTaskData();
+        proxy.clearAllTaskData();
     }
 }

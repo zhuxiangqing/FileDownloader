@@ -24,6 +24,7 @@ import com.liulishuo.filedownloader.FileDownloadMonitor;
 
 /**
  * Created by Jacksgong on 1/19/16.
+ * Monitor
  */
 public class GlobalMonitor implements FileDownloadMonitor.IMonitor {
     private volatile int markStart;
@@ -39,6 +40,12 @@ public class GlobalMonitor implements FileDownloadMonitor.IMonitor {
 
     private final static String TAG = "GlobalMonitor";
 
+    /**
+     *
+     * @param count  The count of tasks will start.
+     * @param serial Tasks will be started in serial or parallel.
+     * @param lis    The listener.这玩意在这儿有啥用？
+     */
     @Override
     public void onRequestStart(int count, boolean serial, FileDownloadListener lis) {
         markStart = 0;

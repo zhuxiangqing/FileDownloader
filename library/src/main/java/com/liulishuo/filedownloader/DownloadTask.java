@@ -76,6 +76,7 @@ public class DownloadTask implements BaseDownloadTask, BaseDownloadTask.IRunning
     DownloadTask(final String url) {
         this.mUrl = url;
         mPauseLock = new Object();
+        //构造方法里面构造Hunter
         final DownloadTaskHunter hunter = new DownloadTaskHunter(this, mPauseLock);
 
         mHunter = hunter;
@@ -90,7 +91,7 @@ public class DownloadTask implements BaseDownloadTask, BaseDownloadTask.IRunning
 
     @Override
     public BaseDownloadTask setPath(final String path) {
-        return setPath(path, false);
+        return setPath(path, false);//默认false
     }
 
     @Override
